@@ -25,3 +25,4 @@ O foco é **aprendizado** e **exploração de conceitos** de forma acessível.
 
 Este projeto é disponibilizado nos termos da **Licença Padrão de Software Livre (sem garantias)**.  
 Você pode usar, modificar e compartilhar, **por sua conta e risco**.
+
