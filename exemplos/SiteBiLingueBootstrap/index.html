@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Site Bilíngue – Python & C++ (Bootstrap)</title>
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- CSS interno para toques visuais -->
+  <style>
+    :root {
+      --bg: #0f172a; /* slate-900 */
+      --text: #e5e7eb; /* zinc-200 */
+      --muted: #94a3b8; /* slate-400 */
+      --accent: #22d3ee; /* cyan-400 */
+      --accent-2: #a78bfa; /* violet-400 */
+    }
+    body { background: radial-gradient(1200px 800px at 10% 10%, #0b1020 0, var(--bg) 40%), var(--bg); color: var(--text); }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border: 1px solid rgba(148,163,184,.2); box-shadow: 0 10px 35px rgba(2,6,23,.5); }
+    .logo { width: 40px; height: 40px; border-radius: .75rem; background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2)); box-shadow: 0 0 0 6px rgba(34,211,238,.12), 0 8px 30px rgba(167,139,250,.25); }
+    pre { background: #0b1220; border: 1px solid rgba(148,163,184,.25); color: #e2e8f0; border-radius: .8rem; }
+    .badge-gradient { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #0b1220; font-weight: 700; }
+    .footer { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <!-- Nav / Header -->
+  <nav class="navbar navbar-dark sticky-top" style="background: rgba(15,23,42,.85); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(148,163,184,.15);">
+    <div class="container py-2">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="logo"></span>
+        <strong id="site-title">Mini Site: Python & C++</strong>
+      </a>
+      <div class="d-flex gap-2" role="group" aria-label="Language selector">
+        <button id="btn-pt" class="btn btn-outline-light active" data-lang="pt" aria-pressed="true">🇧🇷 Português</button>
+        <button id="btn-en" class="btn btn-outline-light" data-lang="en" aria-pressed="false">🇺🇸 English</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Intro -->
+  <header class="container mt-4">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12 col-lg-7">
+        <div class="p-4 rounded-4 glass h-100">
+          <span class="badge badge-gradient px-3 py-2" id="badge-lesson">Aula prática</span>
+          <h1 class="mt-3 mb-2" id="headline">Aprenda o básico de Python e C++</h1>
+          <p class="lead text-secondary" id="subhead">Um guia rápido para escrever seu primeiro programa nas duas linguagens.</p>
+
+          <div class="row g-4 mt-1">
+            <div class="col-12 col-md-6">
+              <h2 class="h4" id="python-title">Python — Olá, Mundo!</h2>
+              <p id="python-text">Python é ótimo para começar: sintaxe simples e execução interativa.</p>
+              <pre class="p-3"><code id="python-code">print("Olá, Mundo!")
+# Execute no terminal: python main.py</code></pre>
+            </div>
+            <div class="col-12 col-md-6">
+              <h2 class="h4" id="cpp-title">C++ — Olá, Mundo!</h2>
+              <p id="cpp-text">C++ é compilado e muito usado para alto desempenho.</p>
+              <pre class="p-3"><code id="cpp-code">#include &lt;iostream&gt;
+int main(){
+    std::cout &lt;&lt; "Olá, Mundo!
+";
+    return 0;
+}
+// Compile: g++ main.cpp -o app
+// Rode: ./app</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <div class="p-4 rounded-4 glass h-100">
+          <h2 class="h4" id="steps-title">Passo a passo</h2>
+          <ol class="ps-3" id="steps-list">
+            <li>Instale Python ou um compilador C++ (g++/clang++).</li>
+            <li>Crie um arquivo <code>main.py</code> ou <code>main.cpp</code>.</li>
+            <li>Copie o código de exemplo e salve.</li>
+            <li>Execute: <code>python main.py</code> ou compile e rode o C++.</li>
+          </ol>
+          <h2 class="h4 mt-3" id="tips-title">Boas práticas</h2>
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-4">
+              <div class="p-3 rounded-4 glass h-100">
+                <strong id="tip-1-title">Use comentários</strong>
+                <div class="text-secondary" id="tip-1-text">Explique o porquê do código, não apenas o que ele faz.</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="p-3 rounded-4 glass h-100">
+                <strong id="tip-2-title">Nomeie bem</strong>
+                <div class="text-secondary" id="tip-2-text">Escolha nomes de variáveis claros e consistentes.</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="p-3 rounded-4 glass h-100">
+                <strong id="tip-3-title">Teste cedo</strong>
+                <div class="text-secondary" id="tip-3-text">Rode versões pequenas do programa e valide a saída.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- More Examples -->
+  <main class="container mt-4">
+    <div class="p-4 rounded-4 glass">
+      <h2 class="h4" id="more-title">Mais exemplos</h2>
+      <div class="row g-4 mt-1">
+        <div class="col-12 col-md-6">
+          <h3 class="h5" id="ex1-title">Entrada do usuário</h3>
+          <pre class="p-3 mb-2"><code id="ex1-py">nome = input("Seu nome: ")
+print(f"Olá, {nome}!")</code></pre>
+          <pre class="p-3"><code id="ex1-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+int main(){
+    std::string nome; 
+    std::cout &lt;&lt; "Seu nome: ";
+    std::getline(std::cin, nome);
+    std::cout &lt;&lt; "Olá, " &lt;&lt; nome &lt;&lt; "!
+";
+}</code></pre>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3 class="h5" id="ex2-title">Condição simples</h3>
+          <pre class="p-3 mb-2"><code id="ex2-py">x = int(input("Número: "))
+if x % 2 == 0:
+    print("Par")
+else:
+    print("Ímpar")</code></pre>
+          <pre class="p-3"><code id="ex2-cpp">#include &lt;iostream&gt;
+int main(){
+    int x; std::cout &lt;&lt; "Número: "; std::cin &gt;&gt; x;
+    if (x % 2 == 0) std::cout &lt;&lt; "Par
+";
+    else std::cout &lt;&lt; "Ímpar
+";
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center mt-3 mb-4 footer" id="footer">Feito em um único arquivo (index.html) com Bootstrap 5, CSS interno e JavaScript mínimo. ✨</p>
+  </main>
+
+  <!-- Bootstrap Bundle JS (com Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript interno: i18n e troca de idioma -->
+  <script>
+    const i18n = {
+      pt: {
+        siteTitle: "Mini Site: Python & C++",
+        badgeLesson: "Aula prática",
+        headline: "Aprenda o básico de Python e C++",
+        subhead: "Um guia rápido para escrever seu primeiro programa nas duas linguagens.",
+        pythonTitle: "Python — Olá, Mundo!",
+        pythonText: "Python é ótimo para começar: sintaxe simples e execução interativa.",
+        pythonCode: `print("Olá, Mundo!")
+# Execute no terminal: python main.py`,
+        cppTitle: "C++ — Olá, Mundo!",
+        cppText: "C++ é compilado e muito usado para alto desempenho.",
+        cppCode: `#include <iostream>
+int main(){
+    std::cout << "Olá, Mundo!\n";
+    return 0;
+}
+// Compile: g++ main.cpp -o app
+// Rode: ./app`,
+        stepsTitle: "Passo a passo",
+        stepsList: [
+          "Instale Python ou um compilador C++ (g++/clang++).",
+          "Crie um arquivo main.py ou main.cpp.",
+          "Copie o código de exemplo e salve.",
+          "Execute: python main.py ou compile e rode o C++."
+        ],
+        tipsTitle: "Boas práticas",
+        tip1Title: "Use comentários",
+        tip1Text: "Explique o porquê do código, não apenas o que ele faz.",
+        tip2Title: "Nomeie bem",
+        tip2Text: "Escolha nomes de variáveis claros e consistentes.",
+        tip3Title: "Teste cedo",
+        tip3Text: "Rode versões pequenas do programa e valide a saída.",
+        moreTitle: "Mais exemplos",
+        ex1Title: "Entrada do usuário",
+        ex1Py: `nome = input("Seu nome: ")
+print(f"Olá, {nome}!")`,
+        ex1Cpp: `#include <iostream>
+#include <string>
+int main(){
+    std::string nome; 
+    std::cout << "Seu nome: ";
+    std::getline(std::cin, nome);
+    std::cout << "Olá, " << nome << "!\n";
+}`,
+        ex2Title: "Condição simples",
+        ex2Py: `x = int(input("Número: "))
+if x % 2 == 0:
+    print("Par")
+else:
+    print("Ímpar")`,
+        ex2Cpp: `#include <iostream>
+int main(){
+    int x; std::cout << "Número: "; std::cin >> x;
+    if (x % 2 == 0) std::cout << "Par\n";
+    else std::cout << "Ímpar\n";
+}`,
+        footer: "Feito em um único arquivo (index.html) com Bootstrap 5, CSS interno e JavaScript mínimo. ✨"
+      },
+      en: {
+        siteTitle: "Mini Site: Python & C++",
+        badgeLesson: "Hands‑on lesson",
+        headline: "Learn the basics of Python and C++",
+        subhead: "A quick guide to write your first program in both languages.",
+        pythonTitle: "Python — Hello, World!",
+        pythonText: "Python is great to start with: simple syntax and interactive execution.",
+        pythonCode: `print("Hello, World!")
+# Run in the terminal: python main.py`,
+        cppTitle: "C++ — Hello, World!",
+        cppText: "C++ is compiled and widely used for high performance.",
+        cppCode: `#include <iostream>
+int main(){
+    std::cout << "Hello, World!\n";
+    return 0;
+}
+// Compile: g++ main.cpp -o app
+// Run: ./app`,
+        stepsTitle: "Step by step",
+        stepsList: [
+          "Install Python or a C++ compiler (g++/clang++).",
+          "Create a file named main.py or main.cpp.",
+          "Copy the sample code and save it.",
+          "Run: python main.py or compile and run the C++."
+        ],
+        tipsTitle: "Best practices",
+        tip1Title: "Use comments",
+        tip1Text: "Explain why the code exists, not only what it does.",
+        tip2Title: "Name well",
+        tip2Text: "Choose clear and consistent variable names.",
+        tip3Title: "Test early",
+        tip3Text: "Run small slices of the program and validate the output.",
+        moreTitle: "More examples",
+        ex1Title: "User input",
+        ex1Py: `name = input("Your name: ")
+print(f"Hello, {name}!")`,
+        ex1Cpp: `#include <iostream>
+#include <string>
+int main(){
+    std::string name; 
+    std::cout << "Your name: ";
+    std::getline(std::cin, name);
+    std::cout << "Hello, " << name << "!\n";
+}`,
+        ex2Title: "Simple condition",
+        ex2Py: `x = int(input("Number: "))
+if x % 2 == 0:
+    print("Even")
+else:
+    print("Odd")`,
+        ex2Cpp: `#include <iostream>
+int main(){
+    int x; std::cout << "Number: "; std::cin >> x;
+    if (x % 2 == 0) std::cout << "Even\n";
+    else std::cout << "Odd\n";
+}`,
+        footer: "Built in a single file (index.html) with Bootstrap 5, internal CSS and minimal JavaScript. ✨"
+      }
+    };
+
+    function applyLang(lang){
+      const t = i18n[lang] || i18n.pt;
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+
+      // Títulos e textos
+      siteTitle.textContent = t.siteTitle;
+      document.title = t.siteTitle + " (Bootstrap)";
+      badgeLesson.textContent = t.badgeLesson;
+      headline.textContent = t.headline;
+      subhead.textContent = t.subhead;
+      pythonTitle.textContent = t.pythonTitle;
+      pythonText.textContent = t.pythonText;
+      pythonCode.textContent = t.pythonCode;
+      cppTitle.textContent = t.cppTitle;
+      cppText.textContent = t.cppText;
+      cppCode.textContent = t.cppCode;
+      stepsTitle.textContent = t.stepsTitle;
+      stepsList.innerHTML = t.stepsList.map(item => `<li>${item}</li>`).join("");
+      tipsTitle.textContent = t.tipsTitle;
+      tip_1_title.textContent = t.tip1Title;
+      tip_1_text.textContent = t.tip1Text;
+      tip_2_title.textContent = t.tip2Title;
+      tip_2_text.textContent = t.tip2Text;
+      tip_3_title.textContent = t.tip3Title;
+      tip_3_text.textContent = t.tip3Text;
+      moreTitle.textContent = t.moreTitle;
+      ex1Title.textContent = t.ex1Title;
+      ex1Py.textContent = t.ex1Py;
+      ex1Cpp.textContent = t.ex1Cpp;
+      ex2Title.textContent = t.ex2Title;
+      ex2Py.textContent = t.ex2Py;
+      ex2Cpp.textContent = t.ex2Cpp;
+      footer.textContent = t.footer;
+
+      // Estado visual/aria dos botões
+      btn_pt.classList.toggle('active', lang === 'pt');
+      btn_en.classList.toggle('active', lang === 'en');
+      btn_pt.setAttribute('aria-pressed', lang === 'pt');
+      btn_en.setAttribute('aria-pressed', lang === 'en');
+
+      localStorage.setItem('lang', lang);
+    }
+
+    // Cache de elementos
+    const siteTitle = document.getElementById('site-title');
+    const badgeLesson = document.getElementById('badge-lesson');
+    const headline = document.getElementById('headline');
+    const subhead = document.getElementById('subhead');
+    const pythonTitle = document.getElementById('python-title');
+    const pythonText = document.getElementById('python-text');
+    const pythonCode = document.getElementById('python-code');
+    const cppTitle = document.getElementById('cpp-title');
+    const cppText = document.getElementById('cpp-text');
+    const cppCode = document.getElementById('cpp-code');
+    const stepsTitle = document.getElementById('steps-title');
+    const stepsList = document.getElementById('steps-list');
+    const tipsTitle = document.getElementById('tips-title');
+    const tip_1_title = document.getElementById('tip-1-title');
+    const tip_1_text = document.getElementById('tip-1-text');
+    const tip_2_title = document.getElementById('tip-2-title');
+    const tip_2_text = document.getElementById('tip-2-text');
+    const tip_3_title = document.getElementById('tip-3-title');
+    const tip_3_text = document.getElementById('tip-3-text');
+    const moreTitle = document.getElementById('more-title');
+    const ex1Title = document.getElementById('ex1-title');
+    const ex1Py = document.getElementById('ex1-py');
+    const ex1Cpp = document.getElementById('ex1-cpp');
+    const ex2Title = document.getElementById('ex2-title');
+    const ex2Py = document.getElementById('ex2-py');
+    const ex2Cpp = document.getElementById('ex2-cpp');
+    const footer = document.getElementById('footer');
+    const btn_pt = document.getElementById('btn-pt');
+    const btn_en = document.getElementById('btn-en');
+
+    // Listeners
+    btn_pt.addEventListener('click', () => applyLang('pt'));
+    btn_en.addEventListener('click', () => applyLang('en'));
+
+    // Idioma inicial
+    const saved = localStorage.getItem('lang');
+    applyLang(saved === 'en' ? 'en' : 'pt');
+  </script>
+</body>
+</html>

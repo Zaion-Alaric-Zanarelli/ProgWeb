@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Site Bilíngue – Python & C++</title>
+  <!-- CSS interno -->
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --muted: #94a3b8;
+      --text: #e5e7eb;
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --ring: rgba(34,211,238,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text); background: radial-gradient(1200px 800px at 10% 10%, #0b1020 0, var(--bg) 40%), var(--bg);
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+    header {
+      position: sticky; top: 0; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.6));
+      border-bottom: 1px solid rgba(148,163,184,.15); z-index: 10;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+    .logo {
+      width: 36px; height: 36px; border-radius: 10px; background:
+      conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(34,211,238,.1), 0 8px 30px rgba(167,139,250,.25);
+    }
+    .brand span { font-weight: 700; letter-spacing: .3px; }
+    .lang { display: flex; gap: 8px; }
+    .btn {
+      border: 1px solid rgba(148,163,184,.2);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+      padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600;
+      transition: .2s ease; outline: none;
+    }
+    .btn:hover { border-color: rgba(148,163,184,.4); transform: translateY(-1px); }
+    .btn.active { border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
+
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: center; padding-top: 28px; }
+    @media (max-width: 900px){ .hero { grid-template-columns: 1fr; } }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(148,163,184,.18); border-radius: 18px; padding: 22px;
+      box-shadow: 0 10px 35px rgba(2,6,23,.5);
+    }
+    h1 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); margin: 0 0 8px; }
+    h2 { font-size: clamp(1.2rem, 2.1vw, 1.6rem); margin: 16px 0 8px; }
+    p.lead { color: var(--muted); margin: 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 18px; }
+    @media (max-width: 720px){ .grid { grid-template-columns: 1fr; } }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; font-size: .88rem;
+      border-radius: 999px; padding: 6px 12px; color: #0b1220;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 700; letter-spacing: .2px;
+    }
+
+    pre { background: #0b1220; border: 1px solid rgba(148,163,184,.2); padding: 14px; border-radius: 14px; overflow: auto; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
+
+    .footer { color: var(--muted); font-size: .9rem; margin-top: 24px; text-align: center; }
+    .tips { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    @media (max-width: 900px){ .tips { grid-template-columns: 1fr; } }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#" aria-label="Home">
+        <div class="logo" aria-hidden="true"></div>
+        <span id="site-title">Mini Site: Python & C++</span>
+      </a>
+      <div class="lang" role="group" aria-label="Language selector">
+        <button id="btn-pt" class="btn active" data-lang="pt" aria-pressed="true">🇧🇷 Português</button>
+        <button id="btn-en" class="btn" data-lang="en" aria-pressed="false">🇺🇸 English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="badge" id="badge-lesson">Aula prática</span>
+        <h1 id="headline">Aprenda o básico de Python e C++</h1>
+        <p class="lead" id="subhead">Um guia rápido para escrever seu primeiro programa nas duas linguagens.</p>
+        <div class="grid" style="margin-top:14px">
+          <div>
+            <h2 id="python-title">Python — Olá, Mundo!</h2>
+            <p id="python-text">Python é ótimo para começar: sintaxe simples e execução interativa.</p>
+            <pre><code id="python-code">print("Olá, Mundo!")
+# Execute no terminal: python main.py</code></pre>
+          </div>
+          <div>
+            <h2 id="cpp-title">C++ — Olá, Mundo!</h2>
+            <p id="cpp-text">C++ é compilado e muito usado para alto desempenho.</p>
+            <pre><code id="cpp-code">#include &lt;iostream&gt;
+int main(){
+    std::cout &lt;&lt; "Olá, Mundo!\n";
+    return 0;
+}
+// Compile: g++ main.cpp -o app
+// Rode: ./app</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2 id="steps-title">Passo a passo</h2>
+        <ol id="steps-list">
+          <li>Instale Python ou um compilador C++ (g++/clang++).</li>
+          <li>Crie um arquivo <code>main.py</code> ou <code>main.cpp</code>.</li>
+          <li>Copie o código de exemplo e salve.</li>
+          <li>Execute: <code>python main.py</code> ou compile e rode o C++.</li>
+        </ol>
+        <h2 id="tips-title" style="margin-top:12px">Boas práticas</h2>
+        <div class="tips">
+          <div class="card"><strong id="tip-1-title">Use comentários</strong><br><span id="tip-1-text">Explique o porquê do código, não apenas o que ele faz.</span></div>
+          <div class="card"><strong id="tip-2-title">Nomeie bem</strong><br><span id="tip-2-text">Escolha nomes de variáveis claros e consistentes.</span></div>
+          <div class="card"><strong id="tip-3-title">Teste cedo</strong><br><span id="tip-3-text">Rode versões pequenas do programa e valide a saída.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <h2 id="more-title">Mais exemplos</h2>
+      <div class="grid">
+        <div>
+          <h3 id="ex1-title">Entrada do usuário</h3>
+          <pre><code id="ex1-py">nome = input("Seu nome: ")
+print(f"Olá, {nome}!")</code></pre>
+          <pre><code id="ex1-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+int main(){
+    std::string nome; 
+    std::cout &lt;&lt; "Seu nome: ";
+    std::getline(std::cin, nome);
+    std::cout &lt;&lt; "Olá, " &lt;&lt; nome &lt;&lt; "!\n";
+}</code></pre>
+        </div>
+        <div>
+          <h3 id="ex2-title">Condição simples</h3>
+          <pre><code id="ex2-py">x = int(input("Número: "))
+if x % 2 == 0:
+    print("Par")
+else:
+    print("Ímpar")</code></pre>
+          <pre><code id="ex2-cpp">#include &lt;iostream&gt;
+int main(){
+    int x; std::cout &lt;&lt; "Número: "; std::cin &gt;&gt; x;
+    if (x % 2 == 0) std::cout &lt;&lt; "Par\n";
+    else std::cout &lt;&lt; "Ímpar\n";
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer" id="footer">Feito em um único arquivo (index.html), com CSS interno e JavaScript mínimo. ✨</p>
+  </main>
+
+  <!-- JavaScript interno para alternar idiomas -->
+  <script>
+    const i18n = {
+      pt: {
+        siteTitle: "Mini Site: Python & C++",
+        badgeLesson: "Aula prática",
+        headline: "Aprenda o básico de Python e C++",
+        subhead: "Um guia rápido para escrever seu primeiro programa nas duas linguagens.",
+        pythonTitle: "Python — Olá, Mundo!",
+        pythonText: "Python é ótimo para começar: sintaxe simples e execução interativa.",
+        pythonCode: `print("Olá, Mundo!")\n# Execute no terminal: python main.py`,
+        cppTitle: "C++ — Olá, Mundo!",
+        cppText: "C++ é compilado e muito usado para alto desempenho.",
+        cppCode: `#include <iostream>\nint main(){\n    std::cout << "Olá, Mundo!\\n";\n    return 0;\n}\n// Compile: g++ main.cpp -o app\n// Rode: ./app`,
+        stepsTitle: "Passo a passo",
+        stepsList: [
+          "Instale Python ou um compilador C++ (g++/clang++).",
+          "Crie um arquivo main.py ou main.cpp.",
+          "Copie o código de exemplo e salve.",
+          "Execute: python main.py ou compile e rode o C++."
+        ],
+        tipsTitle: "Boas práticas",
+        tip1Title: "Use comentários",
+        tip1Text: "Explique o porquê do código, não apenas o que ele faz.",
+        tip2Title: "Nomeie bem",
+        tip2Text: "Escolha nomes de variáveis claros e consistentes.",
+        tip3Title: "Teste cedo",
+        tip3Text: "Rode versões pequenas do programa e valide a saída.",
+        moreTitle: "Mais exemplos",
+        ex1Title: "Entrada do usuário",
+        ex1Py: `nome = input("Seu nome: ")\nprint(f"Olá, {nome}!")`,
+        ex1Cpp: `#include <iostream>\n#include <string>\nint main(){\n    std::string nome; \n    std::cout << "Seu nome: ";\n    std::getline(std::cin, nome);\n    std::cout << "Olá, " << nome << "!\\n";\n}`,
+        ex2Title: "Condição simples",
+        ex2Py: `x = int(input("Número: "))\nif x % 2 == 0:\n    print("Par")\nelse:\n    print("Ímpar")`,
+        ex2Cpp: `#include <iostream>\nint main(){\n    int x; std::cout << "Número: "; std::cin >> x;\n    if (x % 2 == 0) std::cout << "Par\\n";\n    else std::cout << "Ímpar\\n";\n}`,
+        footer: "Feito em um único arquivo (index.html), com CSS interno e JavaScript mínimo. ✨"
+      },
+      en: {
+        siteTitle: "Mini Site: Python & C++",
+        badgeLesson: "Hands‑on lesson",
+        headline: "Learn the basics of Python and C++",
+        subhead: "A quick guide to write your first program in both languages.",
+        pythonTitle: "Python — Hello, World!",
+        pythonText: "Python is great to start with: simple syntax and interactive execution.",
+        pythonCode: `print("Hello, World!")\n# Run in the terminal: python main.py`,
+        cppTitle: "C++ — Hello, World!",
+        cppText: "C++ is compiled and widely used for high performance.",
+        cppCode: `#include <iostream>\nint main(){\n    std::cout << "Hello, World!\\n";\n    return 0;\n}\n// Compile: g++ main.cpp -o app\n// Run: ./app`,
+        stepsTitle: "Step by step",
+        stepsList: [
+          "Install Python or a C++ compiler (g++/clang++).",
+          "Create a file named main.py or main.cpp.",
+          "Copy the sample code and save it.",
+          "Run: python main.py or compile and run the C++."
+        ],
+        tipsTitle: "Best practices",
+        tip1Title: "Use comments",
+        tip1Text: "Explain why the code exists, not only what it does.",
+        tip2Title: "Name well",
+        tip2Text: "Choose clear and consistent variable names.",
+        tip3Title: "Test early",
+        tip3Text: "Run small slices of the program and validate the output.",
+        moreTitle: "More examples",
+        ex1Title: "User input",
+        ex1Py: `name = input("Your name: ")\nprint(f"Hello, {name}!")`,
+        ex1Cpp: `#include <iostream>\n#include <string>\nint main(){\n    std::string name; \n    std::cout << "Your name: ";\n    std::getline(std::cin, name);\n    std::cout << "Hello, " << name << "!\\n";\n}`,
+        ex2Title: "Simple condition",
+        ex2Py: `x = int(input("Number: "))\nif x % 2 == 0:\n    print("Even")\nelse:\n    print("Odd")`,
+        ex2Cpp: `#include <iostream>\nint main(){\n    int x; std::cout << "Number: "; std::cin >> x;\n    if (x % 2 == 0) std::cout << "Even\\n";\n    else std::cout << "Odd\\n";\n}`,
+        footer: "Built in a single file (index.html), with internal CSS and minimal JavaScript. ✨"
+      }
+    };
+
+    function applyLang(lang){
+      const t = i18n[lang] || i18n.pt;
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+      // Títulos e textos
+      siteTitle.textContent = t.siteTitle;
+      document.title = t.siteTitle;
+      badgeLesson.textContent = t.badgeLesson;
+      headline.textContent = t.headline;
+      subhead.textContent = t.subhead;
+      pythonTitle.textContent = t.pythonTitle;
+      pythonText.textContent = t.pythonText;
+      pythonCode.textContent = t.pythonCode;
+      cppTitle.textContent = t.cppTitle;
+      cppText.textContent = t.cppText;
+      cppCode.textContent = t.cppCode;
+      stepsTitle.textContent = t.stepsTitle;
+      // Lista de passos
+      stepsList.innerHTML = t.stepsList.map(item => `<li>${item}</li>`).join("");
+      tipsTitle.textContent = t.tipsTitle;
+      tip_1_title.textContent = t.tip1Title;
+      tip_1_text.textContent = t.tip1Text;
+      tip_2_title.textContent = t.tip2Title;
+      tip_2_text.textContent = t.tip2Text;
+      tip_3_title.textContent = t.tip3Title;
+      tip_3_text.textContent = t.tip3Text;
+      moreTitle.textContent = t.moreTitle;
+      ex1Title.textContent = t.ex1Title;
+      ex1Py.textContent = t.ex1Py;
+      ex1Cpp.textContent = t.ex1Cpp;
+      ex2Title.textContent = t.ex2Title;
+      ex2Py.textContent = t.ex2Py;
+      ex2Cpp.textContent = t.ex2Cpp;
+      footer.textContent = t.footer;
+
+      // Botões estado visual/aria
+      btn_pt.classList.toggle('active', lang === 'pt');
+      btn_en.classList.toggle('active', lang === 'en');
+      btn_pt.setAttribute('aria-pressed', lang === 'pt');
+      btn_en.setAttribute('aria-pressed', lang === 'en');
+
+      localStorage.setItem('lang', lang);
+    }
+
+    // Mapeia ids para variáveis de acesso rápido
+    const siteTitle = document.getElementById('site-title');
+    const badgeLesson = document.getElementById('badge-lesson');
+    const headline = document.getElementById('headline');
+    const subhead = document.getElementById('subhead');
+    const pythonTitle = document.getElementById('python-title');
+    const pythonText = document.getElementById('python-text');
+    const pythonCode = document.getElementById('python-code');
+    const cppTitle = document.getElementById('cpp-title');
+    const cppText = document.getElementById('cpp-text');
+    const cppCode = document.getElementById('cpp-code');
+    const stepsTitle = document.getElementById('steps-title');
+    const stepsList = document.getElementById('steps-list');
+    const tipsTitle = document.getElementById('tips-title');
+    const tip_1_title = document.getElementById('tip-1-title');
+    const tip_1_text = document.getElementById('tip-1-text');
+    const tip_2_title = document.getElementById('tip-2-title');
+    const tip_2_text = document.getElementById('tip-2-text');
+    const tip_3_title = document.getElementById('tip-3-title');
+    const tip_3_text = document.getElementById('tip-3-text');
+    const moreTitle = document.getElementById('more-title');
+    const ex1Title = document.getElementById('ex1-title');
+    const ex1Py = document.getElementById('ex1-py');
+    const ex1Cpp = document.getElementById('ex1-cpp');
+    const ex2Title = document.getElementById('ex2-title');
+    const ex2Py = document.getElementById('ex2-py');
+    const ex2Cpp = document.getElementById('ex2-cpp');
+    const footer = document.getElementById('footer');
+    const btn_pt = document.getElementById('btn-pt');
+    const btn_en = document.getElementById('btn-en');
+
+    // Listeners
+    btn_pt.addEventListener('click', () => applyLang('pt'));
+    btn_en.addEventListener('click', () => applyLang('en'));
+
+    // Idioma inicial
+    const saved = localStorage.getItem('lang');
+    applyLang(saved === 'en' ? 'en' : 'pt');
+  </script>
+</body>
+</html>
