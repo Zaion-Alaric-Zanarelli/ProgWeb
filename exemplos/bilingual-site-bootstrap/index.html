@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mini Site: Python & C++ — Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="assets/img/logo.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-dark sticky-top" style="background: rgba(15,23,42,.85);">
+    <div class="container py-2 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <img src="assets/img/logo.svg" alt="" width="32" height="32">
+        <strong data-i18n="nav_title">Mini Site: Python & C++</strong>
+      </a>
+      <div class="d-flex gap-2" role="group" aria-label="Language selector">
+        <button id="btn-pt" class="btn btn-outline-light btn-lang active">🇧🇷 PT</button>
+        <button id="btn-en" class="btn btn-outline-light btn-lang">🇺🇸 EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container mt-4">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-12 col-lg-7">
+        <div class="hero-card p-4 h-100">
+          <span class="badge badge-gradient px-3 py-2" data-i18n="hero_badge">Aula prática</span>
+          <h1 class="mt-3 mb-2" data-i18n="hero_title">Aprenda o básico de Python e C++</h1>
+          <p class="lead text-secondary" data-i18n="hero_sub">Um guia rápido para escrever seu primeiro programa nas duas linguagens.</p>
+
+          <div class="row g-4 mt-1">
+            <div class="col-12 col-md-6">
+              <h2 class="h4" data-i18n="py_title">Python — Olá, Mundo!</h2>
+              <p data-i18n="py_desc">Python é ótimo para começar: sintaxe simples e execução interativa.</p>
+              <pre><code id="py-code">print("Olá, Mundo!")
+# Execute no terminal: python main.py</code></pre>
+            </div>
+            <div class="col-12 col-md-6">
+              <h2 class="h4" data-i18n="cpp_title">C++ — Olá, Mundo!</h2>
+              <p data-i18n="cpp_desc">C++ é compilado e muito usado para alto desempenho.</p>
+              <pre><code id="cpp-code">#include &lt;iostream&gt;
+int main(){
+    std::cout &lt;&lt; "Olá, Mundo!\n";
+    return 0;
+}
+// Compile: g++ main.cpp -o app
+// Rode: ./app</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <div class="panel p-4 h-100">
+          <h2 class="h4 section-title" data-i18n="steps_title">Passo a passo</h2>
+          <ol class="ps-3">
+            <li data-i18n="steps_1">Instale Python ou um compilador C++ (g++/clang++).</li>
+            <li data-i18n="steps_2">Crie um arquivo main.py ou main.cpp.</li>
+            <li data-i18n="steps_3">Copie o código de exemplo e salve.</li>
+            <li data-i18n="steps_4">Execute: python main.py ou compile e rode o C++.</li>
+          </ol>
+
+          <h2 class="h4 section-title mt-3" data-i18n="tips_title">Boas práticas</h2>
+          <div class="row g-3 mt-1">
+            <div class="col-12 col-md-4">
+              <div class="panel p-3 h-100">
+                <strong data-i18n="tip1_t">Use comentários</strong>
+                <div class="text-secondary" data-i18n="tip1_d">Explique o porquê do código, não apenas o que ele faz.</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="panel p-3 h-100">
+                <strong data-i18n="tip2_t">Nomeie bem</strong>
+                <div class="text-secondary" data-i18n="tip2_d">Escolha nomes de variáveis claros e consistentes.</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="panel p-3 h-100">
+                <strong data-i18n="tip3_t">Teste cedo</strong>
+                <div class="text-secondary" data-i18n="tip3_d">Rode versões pequenas do programa e valide a saída.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mt-4">
+    <div class="panel p-4">
+      <h2 class="h4 section-title" data-i18n="more_title">Mais exemplos</h2>
+      <div class="row g-4 mt-1">
+        <div class="col-12 col-md-6">
+          <h3 class="h5" data-i18n="ex1_t">Entrada do usuário</h3>
+          <pre class="mb-2"><code id="ex1-py">nome = input("Seu nome: ")
+print(f"Olá, {nome}!")</code></pre>
+          <pre><code id="ex1-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+int main(){
+    std::string nome; 
+    std::cout &lt;&lt; "Seu nome: ";
+    std::getline(std::cin, nome);
+    std::cout &lt;&lt; "Olá, " &lt;&lt; nome &lt;&lt; "!\n";
+}</code></pre>
+        </div>
+        <div class="col-12 col-md-6">
+          <h3 class="h5" data-i18n="ex2_t">Condição simples</h3>
+          <pre class="mb-2"><code id="ex2-py">x = int(input("Número: "))
+if x % 2 == 0:
+    print("Par")
+else:
+    print("Ímpar")</code></pre>
+          <pre><code id="ex2-cpp">#include &lt;iostream&gt;
+int main(){
+    int x; std::cout &lt;&lt; "Número: "; std::cin &gt;&gt; x;
+    if (x % 2 == 0) std::cout &lt;&lt; "Par\n";
+    else std::cout &lt;&lt; "Ímpar\n";
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center mt-3 mb-4 footer" data-i18n="footer">Estrutura profissional (Bootstrap + CSS/JS próprios).</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
